@@ -1,4 +1,3 @@
-CP etc /
 ARG server_ip=${JAIL_IP}
 
 CONFIG set enforce_statfs=1;
@@ -6,6 +5,8 @@ CONFIG set allow.mount.procfs;
 CONFIG set mount.procfs;
 
 RESTART
+
+CP etc /
 
 PKG bash wazuh-indexer wazuh-server wazuh-dashboard
 
