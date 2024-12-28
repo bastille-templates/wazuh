@@ -6,8 +6,6 @@ CONFIG set mount.procfs;
 
 RESTART
 
-CP etc /
-
 INCLUDE https://github.com/bastille-templates/opensearch
 INCLUDE https://github.com/bastille-templates/logstash
 
