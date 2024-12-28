@@ -11,6 +11,10 @@ INCLUDE https://github.com/bastille-templates/logstash
 
 PKG bash wazuh-indexer wazuh-server wazuh-dashboard
 
+CP root /
+CP usr /
+CP var /
+
 CMD openssl req -x509 -batch -nodes -days 365 -newkey rsa:2048 -subj "/C=US/ST=California/CN=Wazuh/" -keyout /var/ossec/etc/sslmanager.key -out /var/ossec/etc/sslmanager.cert
 CMD chmod 640 /var/ossec/etc/sslmanager.key
 CMD chmod 640 /var/ossec/etc/sslmanager.cert
