@@ -6,7 +6,7 @@ CONFIG set mount.procfs;
 
 RESTART
 
-INCLUDE https://github.com/bastille-templates/opensearch
+INCLUDE https://github.com/bastille-templates/opensearch-dashboards
 INCLUDE https://github.com/bastille-templates/logstash
 
 PKG bash wazuh-indexer wazuh-server wazuh-dashboard
