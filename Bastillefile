@@ -1,9 +1,4 @@
-CONFIG set enforce_statfs=1;
-CONFIG set allow.mount.procfs;
-CONFIG set mount.procfs;
-
-RESTART
-
+# install required packages
 INCLUDE https://github.com/bastille-templates/wazuh-indexer
 INCLUDE https://github.com/bastille-templates/wazuh-server
 INCLUDE https://github.com/bastille-templates/wazuh-dashboard
