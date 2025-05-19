@@ -1,10 +1,11 @@
 # install required packages
+CMD sed -e "s|quarterly|latest|g" -i.bak /etc/pkg/FreeBSD.conf
+
 INCLUDE https://github.com/bastille-templates/wazuh-indexer
 INCLUDE https://github.com/bastille-templates/wazuh-server
 INCLUDE https://github.com/bastille-templates/wazuh-dashboard
 
 CP root /
-
 CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /etc/hosts
 CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /root/bootstrap.sh
 
