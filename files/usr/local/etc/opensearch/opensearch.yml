@@ -2,7 +2,7 @@
 # OpenSearch Server configuration for work like a Wazuh Indexer Server
 #
 
-network.host: "%{SERVER_IP}"
+network.host: "%%SERVER_IP%%"
 node.name: "indexer1"
 cluster.initial_master_nodes:
 - "indexer1"

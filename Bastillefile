@@ -1,5 +1,3 @@
-ARG server_ip=10.0.0.2
-CMD echo "${JAIL_IP} wazuh.singenode" > /etc/hosts
 CMD sed -e "s|quarterly|latest|g" -i.bak /etc/pkg/FreeBSD.conf
 
 PKG bash wazuh-indexer wazuh-server wazuh-dashboard openjdk17
@@ -21,17 +19,17 @@ COPY files/etc/hosts /etc/
 COPY files/root/pre-opensearch-init.sh /root/
 COPY files/root/post-opensearch-init.sh /root/
 
-REPLACE /usr/local/etc/beats/filebeat.yml SERVER_IP ${server_ip}
+CMD echo "${JAIL_IP} wazuh.singenode" > /etc/hosts
+CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/beats/filebeat.yml
 CMD chown root:wheel /usr/local/etc/beats/filebeat.yml
-REPLACE /usr/local/etc/logstash/logstash.conf SERVER_IP ${server_ip}
+CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/logstash/logstash.conf
 CMD chown root:wheel /usr/local/etc/logstash/logstash.conf
-REPLACE /usr/local/etc/opensearch/opensearch.yml SERVER_IP ${server_ip}
+CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/opensearch/opensearch.yml
 CMD chown root:wheel /usr/local/etc/opensearch/opensearch.yml
-REPLACE /usr/local/etc/opensearch-dashboards/opensearch_dashboards.yml SERVER_IP ${server_ip}
+CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/opensearch-dashboards/opensearch_dashboards.yml
 CMD chown root:wheel /usr/local/etc/opensearch-dashboards/opensearch_dashboards.yml
-REPLACE /etc/hosts SERVER_IP ${server_ip}
 CMD chown root:wheel /etc/hosts
-REPLACE /root/post-opensearch-init.sh SERVER_IP ${server_ip}
+CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /root/post-opensearch-init.sh
 CMD chown root:wheel /root/pre-opensearch-init.sh
 CMD chown root:wheel /root/post-opensearch-init.sh
 
@@ -44,9 +42,9 @@ CMD cd /root/; fetch "https://people.freebsd.org/~acm/ports/wazuh/freebsd-logo.p
 CMD cd /root/; fetch "https://people.freebsd.org/~acm/ports/wazuh/freebsd-mark-logo.png"
 CMD cd /root/; fetch "https://people.freebsd.org/~acm/ports/wazuh/wazuh-gen-certs.tar.gz"
 CMD cd /root/; tar xvfz wazuh-gen-certs.tar.gz
-CMD echo "dashboard_ip=${server_ip}" > /root/wazuh-gen-certs/dashboard.lst
-CMD echo "indexer1_ip=${server_ip}" > /root/wazuh-gen-certs/indexer.lst
-CMD echo "server1_ip=${server_ip}" > /root/wazuh-gen-certs/server.lst
+CMD echo "dashboard_ip=${JAIL_IP}" > /root/wazuh-gen-certs/dashboard.lst
+CMD echo "indexer1_ip=${JAIL_IP}" > /root/wazuh-gen-certs/indexer.lst
+CMD echo "server1_ip=${JAIL_IP}" > /root/wazuh-gen-certs/server.lst
 CMD cd /root/wazuh-gen-certs; echo y | sh gen-certs.sh
 
 CMD chmod 660 /var/ossec/etc/ossec.conf

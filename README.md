@@ -3,9 +3,10 @@ The Open Source Security Platform Unified XDR and SIEM protection for endpoints 
 
 ## Now apply template to container
 ```sh
-git clone https://github.com/bastille-templates/wazuh.git
+git clone https://github.com/bastille-templates/wazuh.git; cd wazuh
 
 bastille create wazuh 14.2-RELEASE Your_IP
+
 cp files/fstab /usr/local/bastille/jails/wazuh/
 cp files/jail.conf /usr/local/bastille/jails/wazuh/
 bastille stop wazuh; bastille start wazuh
