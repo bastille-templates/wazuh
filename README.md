@@ -9,6 +9,7 @@ bastille create wazuh 14.2-RELEASE Your_IP
 
 cp files/fstab /usr/local/bastille/jails/wazuh/
 cp files/jail.conf /usr/local/bastille/jails/wazuh/
+cp files/rdr.conf /usr/local/bastille/jails/wazuh/
 bastille stop wazuh; bastille start wazuh
 
 bastille bootstrap https://github.com/bastille-templates/wazuh
