@@ -6,9 +6,11 @@ The Open Source Security Platform Unified XDR and SIEM protection for endpoints 
 git clone https://github.com/bastille-templates/wazuh.git; cd wazuh
 
 JAIL_IP=172.16.0.10
-bastille create wazuh 14.2-RELEASE ${JAIL_IP}
+R_FreeBSD=14.2-RELEASE
+bastille create wazuh ${R_FreeBSD} ${JAIL_IP}
 PATH_JAIL="/usr/local/bastille/jails/wazuh"
-cp files/jail.conf ${PATH_JAIL}/; sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" ${PATH_JAIL}/jail.conf
+cp files/jail.conf ${PATH_JAIL}/
+sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" ${PATH_JAIL}/jail.conf
 cp files/fstab ${PATH_JAIL}/ 
 cp files/rdr.conf ${PATH_JAIL}/
 

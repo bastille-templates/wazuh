@@ -21,18 +21,17 @@ CP files/root/post-opensearch-init.sh /root/
 
 CMD echo "${JAIL_IP} wazuh.singenode" > /etc/hosts
 CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/beats/filebeat.yml
-CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/logstash/logstash.conf
-CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/opensearch/opensearch.yml
-CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/opensearch-dashboards/opensearch_dashboards.yml
-CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /root/post-opensearch-init.sh
-
-CMD chown root:wheel /etc/hosts
 CMD chown root:wheel /usr/local/etc/beats/filebeat.yml
+CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/logstash/logstash.conf
 CMD chown root:wheel /usr/local/etc/logstash/logstash.conf
-CMD chown opensearch:opensearch /usr/local/etc/opensearch/opensearch.yml
+CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/opensearch/opensearch.yml
+CMD chown root:wheel /usr/local/etc/opensearch/opensearch.yml
+CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/opensearch-dashboards/opensearch_dashboards.yml
 CMD chown root:wheel /usr/local/etc/opensearch-dashboards/opensearch_dashboards.yml
-CMD chown root:wheel /root/post-opensearch-init.sh
+CMD chown root:wheel /etc/hosts
+CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /root/post-opensearch-init.sh
 CMD chown root:wheel /root/pre-opensearch-init.sh
+CMD chown root:wheel /root/post-opensearch-init.sh
 
 CMD sh /root/pre-opensearch-init.sh
 CMD rm /root/pre-opensearch-init.sh
@@ -52,18 +51,30 @@ CMD chmod 660 /var/ossec/etc/ossec.conf
 CMD chown root:wazuh /var/ossec/etc/ossec.conf
 
 CMD cp /root/wazuh-gen-certs/wazuh-certificates/admin.pem /usr/local/etc/opensearch/certs/
+CMD chmod 640 /usr/local/etc/opensearch/certs/admin.pem
+CMD chown opensearch:opensearch /usr/local/etc/opensearch/certs/admin.pem
 CMD cp /root/wazuh-gen-certs/wazuh-certificates/admin-key.pem /usr/local/etc/opensearch/certs/
+CMD chmod 640 /usr/local/etc/opensearch/certs/admin-key.pem
+CMD chown opensearch:opensearch /usr/local/etc/opensearch/certs/admin-key.pem
 CMD cp /root/wazuh-gen-certs/wazuh-certificates/indexer1.pem /usr/local/etc/opensearch/certs/
+CMD chmod 640 /usr/local/etc/opensearch/certs/indexer1.pem
+CMD chown opensearch:opensearch /usr/local/etc/opensearch/certs/indexer1.pem
 CMD cp /root/wazuh-gen-certs/wazuh-certificates/indexer1-key.pem /usr/local/etc/opensearch/certs/
+CMD chmod 640 /usr/local/etc/opensearch/certs/indexer1-key.pem
+CMD chown opensearch:opensearch /usr/local/etc/opensearch/certs/indexer1-key.pem
 CMD cp /root/wazuh-gen-certs/wazuh-certificates/root-ca.pem /usr/local/etc/opensearch/certs/
-CMD chown -R opensearch:opensearch /usr/local/etc/opensearch/certs
-CMD chmod -R 640 /usr/local/etc/opensearch/certs
+CMD chmod 640 /usr/local/etc/opensearch/certs/root-ca.pem
+CMD chown opensearch:opensearch /usr/local/etc/opensearch/certs/root-ca.pem
 
 CMD cp /root/wazuh-gen-certs/wazuh-certificates/dashboard.pem /usr/local/etc/opensearch-dashboards/certs/
+CMD chmod 640 /usr/local/etc/opensearch-dashboards/certs/dashboard.pem
+CMD chown www:www /usr/local/etc/opensearch-dashboards/certs/dashboard.pem
 CMD cp /root/wazuh-gen-certs/wazuh-certificates/dashboard-key.pem /usr/local/etc/opensearch-dashboards/certs/
+CMD chmod 640 /usr/local/etc/opensearch-dashboards/certs/dashboard-key.pem
+CMD chown www:www /usr/local/etc/opensearch-dashboards/certs/dashboard-key.pem
 CMD cp /root/wazuh-gen-certs/wazuh-certificates/root-ca.pem /usr/local/etc/opensearch-dashboards/certs/
-CMD chmod -R 640 /usr/local/etc/opensearch-dashboards/certs
-CMD chown -R www:www /usr/local/etc/opensearch-dashboards/certs
+CMD chmod 640 /usr/local/etc/opensearch-dashboards/certs/root-ca.pem
+CMD chown www:www /usr/local/etc/opensearch-dashboards/certs/root-ca.pem
 
 CMD cp /root/freebsd-logo.png /usr/local/www/opensearch-dashboards/src/core/server/core_app/assets/logos/
 CMD cp /root/freebsd-mark-logo.png /usr/local/www/opensearch-dashboards/src/core/server/core_app/assets/logos/
