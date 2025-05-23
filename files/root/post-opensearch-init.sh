@@ -41,7 +41,8 @@ echo " "
 sleep 10
 
 echo " "
-echo -e " \e[1;37m Passwords generated ...\e[0m"
+echo -e " \e[1;37m Passwords generated  ...\e[0m"
+echo -e " \e[1;37m Save /root/wazuhpass ...\e[0m"
 echo " "
 
 cat <<EOF | tee /root/wazuhpass
