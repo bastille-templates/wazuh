@@ -1,4 +1,4 @@
-# Wazuh
+# Wazuh v 4.12
 The Open Source Security Platform Unified XDR and SIEM protection for endpoints and cloud workloads.
 
 ## Now apply template to container
