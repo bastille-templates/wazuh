@@ -1,3 +1,0 @@
-/usr/local/bastille/releases/14.2-RELEASE /usr/local/bastille/jails/wazuh/root/.bastille nullfs ro 0 0
-fdesc	/dev/fd		fdescfs		rw	0	0
-proc	/proc		procfs		rw	0	0

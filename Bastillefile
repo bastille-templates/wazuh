@@ -15,11 +15,10 @@ CP files/usr/local/etc/beats/filebeat.yml /usr/local/etc/beats/
 CP files/usr/local/etc/logstash/logstash.conf /usr/local/etc/logstash/
 CP files/usr/local/etc/opensearch/opensearch.yml /usr/local/etc/opensearch/opensearch.yml
 CP files/usr/local/etc/opensearch-dashboards/opensearch_dashboards.yml /usr/local/etc/opensearch-dashboards/
-CP files/etc/hosts /etc/
 CP files/root/pre-opensearch-init.sh /root/
 CP files/root/post-opensearch-init.sh /root/
 
-CMD echo "${JAIL_IP} wazuh.singenode" > /etc/hosts
+CMD echo "${JAIL_IP} localhost localhost.local" > /etc/hosts
 CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/beats/filebeat.yml
 CMD chown root:wheel /usr/local/etc/beats/filebeat.yml
 CMD sed -e "s,%%SERVER_IP%%,${JAIL_IP},g" -i "" /usr/local/etc/logstash/logstash.conf
