@@ -75,8 +75,8 @@ CMD cp /root/wazuh-gen-certs/wazuh-certificates/root-ca.pem /usr/local/etc/opens
 CMD chmod 640 /usr/local/etc/opensearch-dashboards/certs/root-ca.pem
 CMD chown www:www /usr/local/etc/opensearch-dashboards/certs/root-ca.pem
 
-CMD cp /root/freebsd-logo.png /usr/local/www/opensearch-dashboards/src/core/server/core_app/assets/logos/
-CMD cp /root/freebsd-mark-logo.png /usr/local/www/opensearch-dashboards/src/core/server/core_app/assets/logos/
+CMD mv /root/freebsd-logo.png /usr/local/www/opensearch-dashboards/src/core/server/core_app/assets/logos/
+CMD mv /root/freebsd-mark-logo.png /usr/local/www/opensearch-dashboards/src/core/server/core_app/assets/logos/
 
 SYSRC wazuh_manager_enable=YES
 SYSRC filebeat_enable=YES
