@@ -1,7 +1,11 @@
-# Wazuh v 4.12
+# Wazuh v 4.12 Single-Node
 The Open Source Security Platform Unified XDR and SIEM protection for endpoints and cloud workloads.
 
 ## Now apply template to container
+Include:
+- Indexer (Opensearch)
+- Server (Logstash&Filebeats)
+- Dashboard (Opensearch-Dashboards)
 ```sh
 git clone https://github.com/bastille-templates/wazuh.git; cd wazuh
 
